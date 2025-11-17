@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Participations_joueur extends Model
+class Participation_joueur extends Model
 {
     use HasFactory;
 

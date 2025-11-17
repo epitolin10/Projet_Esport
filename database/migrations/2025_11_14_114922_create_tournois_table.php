@@ -15,7 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('nom_tournoi');
             $table->string('lieu');
-            $table->date('date');
+            $table->date('date_debut');
+            $table->date('date_fin');
+            $table->text('description');
+            //id_jeu fait référence au jeu principal du tournoi
             $table->ForeignId('id_jeu')->constrained('jeux')->onDelete('cascade');
             $table->timestamps();
         });

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('jeux', function (Blueprint $table) {
             $table->id();
-            $tbale->string('nom_jeux');
+            $table->string('nom_jeux');
             $table->string('editeur');
             $table->string('categorie');
             $table->text('description');

@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('pseudo');
             
             $table->ForeignId('id_jeu')->constrained('jeux')->onDelete('cascade');
-            $table->ForeignId('id_equipe')->constrained('equipes')->onDelete('cascade');
+            // On ignore la contrainte de la clé étrangère si le joueur n'appartient à aucune équipe
+            $table->ForeignId('id_equipe')->nullable()->constrained('equipes')->onDelete('set null');
             $table->timestamps();
         });
     }
