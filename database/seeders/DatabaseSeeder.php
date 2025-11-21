@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
             EquipeSeeder::class,
             JoueurSeeder::class,
             TournoiSeeder::class,
-            Participations_equipeSeeder::class,
-            Participations_joueurSeeder::class,
+            Participation_equipeSeeder::class,
+            Participation_joueurSeeder::class,
             
         ]);
     }
