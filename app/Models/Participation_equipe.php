@@ -12,4 +12,14 @@ class Participation_equipe extends Model
     protected $table = 'participations_equipe';
 
     protected $fillable = ['id_tournoi', 'id_equipe',];
+
+    public function equipe()
+    {
+        return $this->belongsTo(Equipe::class, 'id_equipe');
+    }
+
+    public function tournoi()
+    {
+        return $this->belongsTo(Tournoi::class, 'id_tournoi');
+    }
 }

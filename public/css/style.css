@@ -62,6 +62,7 @@ nav {
     z-index: 1000;
     border-bottom: 2px solid rgba(0, 255, 136, 0.3);
     box-shadow: 0 4px 20px rgba(0, 255, 136, 0.1);
+    gap: 1rem; /* Espacement entre les éléments */
 }
 
 .logo {
@@ -117,7 +118,6 @@ nav {
     text-decoration: none;
     display: inline-block;
 }
-
 .btn-connexion:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 255, 136, 0.5);
@@ -499,3 +499,2046 @@ h2 {
                 grid-column: 1;
             }
         }
+        /* Styles spécifiques pour la page détails tournoi */
+        .tournoi-header {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 2px solid rgba(0, 255, 136, 0.3);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .tournoi-header::before {
+            content: '🏆';
+            position: absolute;
+            right: -20px;
+            top: -20px;
+            font-size: 15rem;
+            opacity: 0.05;
+        }
+
+        .tournoi-title {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tournoi-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .meta-item {
+            background: rgba(0, 255, 136, 0.05);
+            padding: 1.2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .meta-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 25px rgba(0, 255, 136, 0.2);
+        }
+
+        .meta-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .meta-value {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--primary);
+            margin: 3rem 0 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .teams-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 2px solid transparent;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(255, 0, 128, 0.1));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .team-card:hover::before {
+            opacity: 1;
+        }
+
+        .team-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(0, 255, 136, 0.3);
+        }
+
+        .team-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid rgba(0, 255, 136, 0.1);
+        }
+
+        .team-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .team-logo:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .team-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            flex: 1;
+        }
+
+        .players-label {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .players-list {
+            list-style: none;
+            display: grid;
+            gap: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .player-item {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1rem;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border: 1px solid rgba(0, 255, 136, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .player-item:hover {
+            background: rgba(0, 255, 136, 0.05);
+            border-color: var(--primary);
+            transform: translateX(10px);
+        }
+
+        .player-photo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--secondary);
+            box-shadow: 0 3px 10px rgba(255, 0, 128, 0.3);
+        }
+
+        .player-pseudo {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--card-bg);
+            border-radius: 15px;
+            border: 2px dashed rgba(0, 255, 136, 0.3);
+        }
+
+        .empty-state-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: rgba(0, 255, 136, 0.1);
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+        }
+
+        .btn-back:hover {
+            background: var(--primary);
+            color: var(--dark);
+            transform: translateX(-5px);
+        }
+
+        @media (max-width: 768px) {
+            .tournoi-header {
+                padding: 2rem;
+            }
+
+            .tournoi-title {
+                font-size: 1.8rem;
+            }
+
+            .tournoi-meta {
+                grid-template-columns: 1fr;
+            }
+
+            .teams-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+                .login-wrapper {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        /* Effet de fond animé supplémentaire */
+        .login-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 255, 136, 0.1) 0%, transparent 70%);
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+        }
+
+        .login-container {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 480px;
+            width: 100%;
+            border: 2px solid rgba(0, 255, 136, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 255, 136, 0.2);
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .login-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 1.5rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .login-title {
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .connexion-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            color: var(--text);
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="password"],
+        .form-group input[type="email"] {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(0, 255, 136, 0.2);
+            border-radius: 10px;
+            padding: 1rem;
+            color: var(--text);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="password"]:focus,
+        .form-group input[type="email"]:focus {
+            border-color: var(--primary);
+            background: rgba(0, 255, 136, 0.05);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+        }
+
+        .form-group input[type="text"]::placeholder,
+        .form-group input[type="password"]::placeholder {
+            color: var(--text-secondary);
+        }
+
+        /* Groupe checkbox */
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin: 0.5rem 0;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--primary);
+        }
+
+        .checkbox-group label {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            cursor: pointer;
+            margin: 0;
+        }
+
+        .btn-submit {
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary), #00cc70);
+            border: none;
+            border-radius: 10px;
+            color: var(--dark);
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.3);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 255, 136, 0.5);
+        }
+
+        .btn-submit:active {
+            transform: translateY(-1px);
+        }
+
+        .form-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(0, 255, 136, 0.1);
+        }
+
+        .form-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-link:hover {
+            color: var(--secondary);
+            text-decoration: underline;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(0, 255, 136, 0.2);
+        }
+
+        .social-login {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .btn-social {
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(0, 255, 136, 0.2);
+            border-radius: 10px;
+            color: var(--text);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-social:hover {
+            border-color: var(--primary);
+            background: rgba(0, 255, 136, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .signup-prompt {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0, 255, 136, 0.1);
+            color: var(--text-secondary);
+        }
+
+        .signup-prompt a {
+            color: var(--primary);
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .signup-prompt a:hover {
+            color: var(--secondary);
+        }
+
+        /* Messages d'erreur */
+        .error-message {
+            background: rgba(255, 0, 128, 0.1);
+            border: 1px solid var(--secondary);
+            border-radius: 10px;
+            padding: 1rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        @media (max-width: 768px) {
+            .login-container {
+                padding: 2rem;
+            }
+
+            .login-title {
+                font-size: 1.6rem;
+            }
+
+            .social-login {
+                grid-template-columns: 1fr;
+            }
+            .inscription-form .form-group small {
+                display: block;
+                margin-top: 0.3rem;
+                color: var(--text-secondary);
+                font-size: 0.85rem;
+            }
+            /* Indicateur de force du mot de passe (optionnel) */
+            .password-strength {
+                height: 4px;
+                border-radius: 2px;
+                margin-top: 0.5rem;
+                background: rgba(255, 255, 255, 0.1);
+                overflow: hidden;
+            }
+
+            .password-strength-bar {
+                height: 100%;
+                transition: all 0.3s ease;
+            }
+
+            .password-strength-bar.weak {
+                width: 33%;
+                background: var(--secondary);
+            }
+
+            .password-strength-bar.medium {
+                width: 66%;
+                background: orange;
+            }
+
+            .password-strength-bar.strong {
+                width: 100%;
+                background: var(--primary);
+            }
+            /* ============================================
+   BOUTONS NAVIGATION (Profil & Déconnexion)
+   ============================================ */
+
+/* Container pour les boutons utilisateur */
+nav {
+    display: flex;
+    gap: 1rem; /* Espacement entre les boutons */
+}
+
+/* Bouton Profil */
+.btn-profil {
+    padding: 0.7rem 2rem;
+    background: linear-gradient(135deg, rgba(255, 0, 128, 0.8), var(--secondary));
+    border: none;
+    border-radius: 25px;
+    color: var(--text);
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 0, 128, 0.3);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-profil:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 0, 128, 0.5);
+    background: linear-gradient(135deg, var(--secondary), #ff3399);
+}
+
+/* Bouton Déconnexion */
+.btn-deconnexion {
+    padding: 0.7rem 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 0, 128, 0.5);
+    border-radius: 25px;
+    color: var(--secondary);
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-deconnexion:hover {
+    background: rgba(255, 0, 128, 0.1);
+    border-color: var(--secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 0, 128, 0.3);
+}
+
+/* Responsive pour mobile */
+@media (max-width: 768px) {
+    nav {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    .btn-profil,
+    .btn-deconnexion {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+}
+}
+/* ============================================
+   BOUTONS NAVIGATION (Profil & Déconnexion)
+   ============================================ */
+
+/* Container pour les boutons utilisateur */
+nav {
+    display: flex;
+    gap: 1rem; /* Espacement entre les boutons */
+}
+
+/* Bouton Profil */
+.btn-profil {
+    padding: 0.7rem 2rem;
+    background: linear-gradient(135deg, rgba(255, 0, 128, 0.8), var(--secondary));
+    border: none;
+    border-radius: 25px;
+    color: var(--text);
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 0, 128, 0.3);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-profil:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 0, 128, 0.5);
+    background: linear-gradient(135deg, var(--secondary), #ff3399);
+}
+
+/* Bouton Déconnexion */
+.btn-deconnexion {
+    padding: 0.7rem 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 0, 128, 0.5);
+    border-radius: 25px;
+    color: var(--secondary);
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-deconnexion:hover {
+    background: rgba(255, 0, 128, 0.1);
+    border-color: var(--secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 0, 128, 0.3);
+}
+
+/* Responsive pour mobile */
+@media (max-width: 768px) {
+    nav {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    .btn-profil,
+    .btn-deconnexion {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+}
+/* ============================================
+   PANNEAU ADMINISTRATION
+   ============================================ */
+
+.admin-section {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+    border: 2px solid rgba(255, 0, 128, 0.3);
+    box-shadow: 0 10px 40px rgba(255, 0, 128, 0.2);
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.admin-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid rgba(255, 0, 128, 0.2);
+}
+
+.admin-title {
+    font-size: 2rem;
+    background: linear-gradient(135deg, var(--secondary), #ff3399);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+}
+
+.admin-subtitle {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+.admin-form-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.admin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.form-group-admin {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group-admin.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group-admin label {
+    color: var(--text);
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.form-group-admin input[type="text"],
+.form-group-admin input[type="file"],
+.form-group-admin select,
+.form-group-admin textarea {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 0, 128, 0.2);
+    border-radius: 10px;
+    padding: 1rem;
+    color: var(--text);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    outline: none;
+    font-family: inherit;
+}
+
+.form-group-admin input[type="text"]:focus,
+.form-group-admin select:focus,
+.form-group-admin textarea:focus {
+    border-color: var(--secondary);
+    background: rgba(255, 0, 128, 0.05);
+    box-shadow: 0 0 20px rgba(255, 0, 128, 0.2);
+}
+
+.form-group-admin input[type="file"] {
+    padding: 0.8rem;
+    cursor: pointer;
+}
+
+.form-group-admin input[type="file"]::-webkit-file-upload-button {
+    background: linear-gradient(135deg, var(--secondary), #ff3399);
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    color: var(--text);
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 1rem;
+}
+
+.form-group-admin input[type="file"]::-webkit-file-upload-button:hover {
+    background: linear-gradient(135deg, #ff3399, var(--secondary));
+}
+
+.form-group-admin select {
+    cursor: pointer;
+}
+
+.form-group-admin textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-group-admin small {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin-top: -0.3rem;
+}
+
+.btn-ajouter {
+    padding: 1.2rem 2rem;
+    background: linear-gradient(135deg, var(--secondary), #ff3399);
+    border: none;
+    border-radius: 12px;
+    color: var(--text);
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(255, 0, 128, 0.3);
+    margin-top: 1rem;
+}
+
+.btn-ajouter:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(255, 0, 128, 0.5);
+    background: linear-gradient(135deg, #ff3399, #ff0099);
+}
+
+.btn-ajouter:active {
+    transform: translateY(-1px);
+}
+
+/* Messages de succès/erreur */
+.alert-success {
+    background: rgba(0, 255, 136, 0.1);
+    border: 2px solid var(--primary);
+    border-radius: 10px;
+    padding: 1rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    animation: slideInDown 0.5s ease-out;
+}
+
+.alert-error {
+    background: rgba(255, 0, 128, 0.1);
+    border: 2px solid var(--secondary);
+    border-radius: 10px;
+    padding: 1rem;
+    color: var(--secondary);
+    margin-bottom: 1.5rem;
+    animation: shake 0.5s ease-out;
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .admin-section {
+        padding: 1.5rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-title {
+        font-size: 1.5rem;
+    }
+}
+/* Réduire l'espace au-dessus de la section admin */
+.container:has(.admin-section) {
+    padding-top: 100px; /* Au lieu de 120px par défaut */
+}
+
+.admin-section {
+    margin-top: 0;
+}
+/* ============================================
+   INPUTS DATE STYLISÉS
+   ============================================ */
+
+.form-group-admin input[type="date"] {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 0, 128, 0.2);
+    border-radius: 10px;
+    padding: 1rem;
+    color: var(--text);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    outline: none;
+    font-family: inherit;
+    cursor: pointer;
+    position: relative;
+}
+
+.form-group-admin input[type="date"]:focus {
+    border-color: var(--secondary);
+    background: rgba(255, 0, 128, 0.05);
+    box-shadow: 0 0 20px rgba(255, 0, 128, 0.2);
+}
+
+/* Styliser l'icône du calendrier */
+.form-group-admin input[type="date"]::-webkit-calendar-picker-indicator {
+    background: linear-gradient(135deg, var(--secondary), #ff3399);
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    filter: invert(1);
+    transition: transform 0.3s ease;
+}
+
+.form-group-admin input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    transform: scale(1.1);
+}
+
+/* Pour Firefox */
+.form-group-admin input[type="date"]::-moz-calendar-picker-indicator {
+    background: linear-gradient(135deg, var(--secondary), #ff3399);
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    filter: invert(1);
+}
+
+/* Placeholder pour les dates vides */
+.form-group-admin input[type="date"]:invalid {
+    color: var(--text-secondary);
+}
+
+.form-group-admin input[type="date"]:valid {
+    color: var(--text);
+}
+
+/* Animation au focus */
+.form-group-admin input[type="date"]:focus::-webkit-calendar-picker-indicator {
+    animation: pulse-calendar 1s ease-in-out infinite;
+}
+
+@keyframes pulse-calendar {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+/* ============================================
+   SELECT / LISTE DÉROULANTE STYLISÉE
+   ============================================ */
+
+.form-group-admin select {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 0, 128, 0.2);
+    border-radius: 10px;
+    padding: 1rem;
+    color: var(--text);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    outline: none;
+    font-family: inherit;
+    cursor: pointer;
+    appearance: none; /* Enlève le style par défaut du navigateur */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ff0080' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+}
+
+.form-group-admin select:focus {
+    border-color: var(--secondary);
+    background-color: rgba(255, 0, 128, 0.05);
+    box-shadow: 0 0 20px rgba(255, 0, 128, 0.2);
+}
+
+.form-group-admin select:hover {
+    border-color: var(--secondary);
+}
+
+/* Options du select */
+.form-group-admin select option {
+    background: var(--card-bg);
+    color: var(--text);
+    padding: 0.8rem;
+}
+
+.form-group-admin select option:hover,
+.form-group-admin select option:checked {
+    background: linear-gradient(135deg, rgba(255, 0, 128, 0.3), rgba(255, 0, 128, 0.1));
+    color: var(--primary);
+}
+
+/* Option disabled (placeholder) */
+.form-group-admin select option[disabled] {
+    color: var(--text-secondary);
+}
+
+/* Pour Edge spécifiquement */
+.form-group-admin select::-ms-expand {
+    display: none; /* Cache la flèche par défaut sur Edge */
+}
+.btn-equipes {
+    padding: 0.7rem 2rem;
+    background: linear-gradient(135deg, #00d4ff, #0099ff);
+    border: 2px solid rgba(0, 212, 255, 0.5);
+    border-radius: 25px;
+    color: var(--dark);
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-equipes:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 212, 255, 0.5);
+    background: linear-gradient(135deg, #00e5ff, #00aaff);
+}
+/* ============================================
+   PAGE DES ÉQUIPES
+   ============================================ */
+
+/* Grille des équipes */
+.teams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* Carte d'équipe */
+.team-card {
+    background: var(--card-bg);
+    border-radius: 15px;
+    padding: 2rem;
+    border: 2px solid transparent;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.team-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.05), rgba(255, 0, 128, 0.05));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.team-card:hover::before {
+    opacity: 1;
+}
+
+.team-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--primary);
+    box-shadow: 0 15px 40px rgba(0, 255, 136, 0.3);
+}
+
+/* En-tête de l'équipe */
+.team-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid rgba(0, 255, 136, 0.1);
+}
+
+.team-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 3px solid var(--primary);
+    box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.team-logo:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.team-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary);
+    flex: 1;
+}
+
+/* Section des joueurs */
+.players-section {
+    position: relative;
+    z-index: 1;
+}
+
+.players-label {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.players-list {
+    list-style: none;
+    display: grid;
+    gap: 1rem;
+}
+
+.player-item {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 1rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border: 1px solid rgba(0, 255, 136, 0.1);
+    transition: all 0.3s ease;
+}
+
+.player-item:hover {
+    background: rgba(0, 255, 136, 0.05);
+    border-color: var(--primary);
+    transform: translateX(10px);
+}
+
+.player-photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--secondary);
+    box-shadow: 0 3px 10px rgba(255, 0, 128, 0.3);
+    flex-shrink: 0;
+}
+
+.player-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    flex: 1;
+}
+
+.player-pseudo {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.player-game {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    background: rgba(0, 255, 136, 0.1);
+    padding: 0.2rem 0.6rem;
+    border-radius: 10px;
+    display: inline-block;
+    width: fit-content;
+}
+
+/* Message "Aucun joueur" */
+.no-players {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-secondary);
+    position: relative;
+    z-index: 1;
+}
+
+.no-players-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    opacity: 0.5;
+}
+
+.no-players p {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* État vide (aucune équipe) */
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--card-bg);
+    border-radius: 15px;
+    border: 2px dashed rgba(0, 255, 136, 0.3);
+    margin-top: 2rem;
+}
+
+.empty-state-icon {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.empty-state h3 {
+    color: var(--primary);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+    color: var(--text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .teams-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .team-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .team-name {
+        text-align: center;
+    }
+}
+/* ============================================
+   SECTION COMMENTAIRES
+   ============================================ */
+
+.comments-section {
+    background: var(--card-bg);
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 2rem 0;
+    border: 2px solid rgba(0, 255, 136, 0.2);
+}
+
+/* Carte de commentaire */
+.comment {
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 4px solid var(--primary);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.comment:last-child {
+    margin-bottom: 0;
+}
+
+.comment:hover {
+    background: rgba(0, 255, 136, 0.05);
+    border-left-color: var(--secondary);
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0, 255, 136, 0.1);
+}
+
+.comment::before {
+    content: '💬';
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    opacity: 0.3;
+}
+
+.comment p {
+    color: var(--text);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0 0 1rem 0;
+    padding-right: 2rem;
+}
+
+.comment small {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.comment small::before {
+    content: '👤';
+    font-size: 1rem;
+}
+
+/* Message si aucun commentaire */
+.comments-section:empty::after {
+    content: 'Aucun commentaire pour le moment. Soyez le premier à commenter ! 💬';
+    display: block;
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 2rem;
+    font-style: italic;
+}
+
+/* Formulaire de commentaire */
+.comments-section + form,
+.comments-section + form + form {
+    background: var(--card-bg);
+    border-radius: 15px;
+    padding: 2rem;
+    border: 2px solid rgba(255, 0, 128, 0.2);
+    margin-top: 2rem;
+}
+
+.comments-section + form .form-group,
+.comments-section + form + form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.comments-section + form label,
+.comments-section + form + form label {
+    color: var(--text);
+    font-weight: 600;
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 0.8rem;
+}
+
+.comments-section + form textarea,
+.comments-section + form + form textarea {
+    width: 100%;
+    min-height: 120px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 0, 128, 0.2);
+    border-radius: 10px;
+    padding: 1rem;
+    color: var(--text);
+    font-size: 1rem;
+    font-family: inherit;
+    resize: vertical;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.comments-section + form textarea:focus,
+.comments-section + form + form textarea:focus {
+    border-color: var(--secondary);
+    background: rgba(255, 0, 128, 0.05);
+    box-shadow: 0 0 20px rgba(255, 0, 128, 0.2);
+}
+
+.comments-section + form textarea::placeholder,
+.comments-section + form + form textarea::placeholder {
+    color: var(--text-secondary);
+}
+
+.comments-section + form textarea:disabled,
+.comments-section + form + form textarea:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.comments-section + form button[type="submit"],
+.comments-section + form + form button[type="submit"] {
+    padding: 1rem 2.5rem;
+    background: linear-gradient(135deg, var(--secondary), #ff3399);
+    border: none;
+    border-radius: 10px;
+    color: var(--text);
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(255, 0, 128, 0.3);
+}
+
+.comments-section + form button[type="submit"]:hover,
+.comments-section + form + form button[type="submit"]:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(255, 0, 128, 0.5);
+    background: linear-gradient(135deg, #ff3399, #ff0099);
+}
+
+.comments-section + form button[type="submit"]:active,
+.comments-section + form + form button[type="submit"]:active {
+    transform: translateY(-1px);
+}
+
+/* Message de succès */
+.alert-success {
+    background: rgba(0, 255, 136, 0.1);
+    border: 2px solid var(--primary);
+    border-radius: 10px;
+    padding: 1rem 1.5rem;
+    color: var(--primary);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    animation: slideInDown 0.5s ease-out;
+}
+
+.alert-success::before {
+    content: '✅';
+    font-size: 1.5rem;
+}
+
+/* Message pour utilisateur non connecté */
+.comment-login-prompt {
+    background: rgba(255, 0, 128, 0.1);
+    border: 2px dashed var(--secondary);
+    border-radius: 10px;
+    padding: 2rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.comment-login-prompt p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.comment-login-prompt a {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background: linear-gradient(135deg, var(--secondary), #ff3399);
+    border-radius: 10px;
+    color: var(--text);
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.comment-login-prompt a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 0, 128, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .comments-section,
+    .comments-section + form,
+    .comments-section + form + form {
+        padding: 1.5rem;
+    }
+
+    .comment {
+        padding: 1rem;
+    }
+
+    .comment::before {
+        font-size: 1.2rem;
+        top: 0.8rem;
+        right: 0.8rem;
+    }
+}
+/* ============================================
+   PAGE PROFIL UTILISATEUR
+   ============================================ */
+
+.profile-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+/* En-tête du profil */
+.profile-header {
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 20px;
+    border: 2px solid rgba(0, 255, 136, 0.3);
+    box-shadow: 0 10px 40px rgba(0, 255, 136, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.profile-avatar {
+    font-size: 4rem;
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.2), rgba(255, 0, 128, 0.2));
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 3px solid var(--primary);
+    box-shadow: 0 5px 20px rgba(0, 255, 136, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.profile-avatar:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.profile-info {
+    flex: 1;
+}
+
+.profile-info h1 {
+    margin: 0 0 0.5rem 0;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 2.5rem;
+}
+
+.profile-badge {
+    background: linear-gradient(135deg, var(--primary), #00cc70);
+    color: var(--dark);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    display: inline-block;
+    box-shadow: 0 3px 10px rgba(0, 255, 136, 0.3);
+}
+
+.profile-date {
+    color: var(--text-secondary);
+    margin-top: 0.8rem;
+    margin-bottom: 0;
+    font-size: 0.95rem;
+}
+
+.profile-actions {
+    margin-left: auto;
+}
+
+.btn-logout {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    color: var(--text);
+    padding: 0.9rem 2rem;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+}
+
+.btn-logout:hover {
+    background: linear-gradient(135deg, #c82333, #bd2130);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(220, 53, 69, 0.5);
+}
+
+/* Contenu du profil */
+.profile-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+}
+
+.profile-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 2px solid rgba(0, 255, 136, 0.2);
+    box-shadow: 0 5px 20px rgba(0, 255, 136, 0.1);
+    height: fit-content;
+}
+
+.card-title {
+    border-bottom: 2px solid rgba(0, 255, 136, 0.2);
+    padding-bottom: 1rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+    font-size: 1.5rem;
+}
+
+/* Informations */
+.info-group {
+    margin-bottom: 1.5rem;
+}
+
+.info-group:last-child {
+    margin-bottom: 0;
+}
+
+.info-group label {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.info-value {
+    font-weight: 500;
+    color: var(--text);
+    font-size: 1.1rem;
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    border: 1px solid rgba(0, 255, 136, 0.1);
+}
+
+/* Activité */
+.activity-card {
+    height: auto;
+}
+
+.activity-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.activity-item {
+    padding: 1.2rem 0;
+    border-bottom: 1px solid rgba(0, 255, 136, 0.1);
+    transition: all 0.3s ease;
+}
+
+.activity-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.activity-item:hover {
+    padding-left: 1rem;
+    background: rgba(0, 255, 136, 0.03);
+    border-radius: 8px;
+}
+
+.activity-meta {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.activity-meta a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.activity-meta a:hover {
+    color: var(--secondary);
+    text-decoration: underline;
+}
+
+.activity-content {
+    color: var(--text);
+    font-style: italic;
+    line-height: 1.5;
+}
+
+/* État vide */
+.empty-state {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: var(--text-secondary);
+}
+
+.empty-state-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.empty-state p {
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+    .profile-content {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-actions {
+        margin-left: 0;
+    }
+
+    .profile-info h1 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-header {
+        padding: 1.5rem;
+    }
+
+    .profile-avatar {
+        width: 80px;
+        height: 80px;
+        font-size: 3rem;
+    }
+
+    .profile-card {
+        padding: 1.5rem;
+    }
+}
+        
+/* ============================================
+   PAGE PROFIL JOUEUR
+   ============================================ */
+
+.player-profile {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 3rem;
+    border: 2px solid rgba(0, 255, 136, 0.3);
+    box-shadow: 0 10px 40px rgba(0, 255, 136, 0.2);
+    animation: fadeInUp 0.6s ease-out;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.player-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid rgba(0, 255, 136, 0.1);
+}
+
+.player-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--primary);
+    box-shadow: 0 5px 25px rgba(0, 255, 136, 0.4);
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.player-avatar:hover {
+    transform: scale(1.05) rotate(5deg);
+}
+
+.player-avatar-placeholder {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    font-weight: bold;
+    color: var(--dark);
+    margin: 0 auto 1.5rem;
+    border: 4px solid rgba(255, 255, 255, 0.2);
+}
+
+.player-name {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.player-team {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.player-info-content {
+    display: grid;
+    gap: 2rem;
+}
+
+.player-bio h2,
+.player-socials h2 {
+    color: var(--primary);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.player-bio p {
+    line-height: 1.8;
+    color: var(--text);
+    font-size: 1.1rem;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 255, 136, 0.1);
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.social-link {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: var(--text);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid transparent;
+}
+
+.social-link:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.social-link.x-twitter:hover {
+    background: #000000;
+    border-color: #ffffff;
+}
+
+.social-link.twitch:hover {
+    background: #6441a5;
+    border-color: #a970ff;
+}
+
+.social-link.youtube:hover {
+    background: #ff0000;
+    border-color: #ff4d4d;
+}
+
+.social-link.instagram:hover {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    border-color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .player-profile {
+        padding: 1.5rem;
+    }
+    
+    .player-name {
+        font-size: 2rem;
+    }
+    
+    .social-link {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+}
+
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.site-footer {
+    background: rgba(10, 14, 39, 0.95);
+    border-top: 2px solid rgba(0, 255, 136, 0.3);
+    padding: 3rem 2rem 1.5rem;
+    margin-top: 4rem;
+    position: relative;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.footer-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.footer-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: 500;
+}
+
+.footer-links a:hover {
+    color: var(--primary);
+}
+
+.footer-social {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text);
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-icon:hover {
+    transform: translateY(-3px);
+    background: var(--card-bg);
+    border-color: var(--primary);
+    box-shadow: 0 5px 15px rgba(0, 255, 136, 0.2);
+}
+
+.social-icon.github:hover {
+    color: #ffffff;
+    border-color: #ffffff;
+    background: #2b3137;
+}
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.footer-credits {
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+
+/* ============================================
+   LOGOS
+   ============================================ */
+
+.logo-img {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 5px rgba(0, 255, 136, 0.3));
+    transition: all 0.3s ease;
+}
+
+.logo:hover .logo-img {
+    filter: drop-shadow(0 0 8px rgba(0, 255, 136, 0.6));
+    transform: scale(1.05);
+}
+
+.footer-logo-img {
+    height: 70px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 5px rgba(0, 255, 136, 0.3));
+}
+

@@ -15,6 +15,6 @@ class Equipe extends Model
 
     public function joueurs()
     {
-        return $this->hasMany(Joueurs::class, 'id_equipe');
+        return $this->hasMany(Joueur::class, 'id_equipe');
     }
 }

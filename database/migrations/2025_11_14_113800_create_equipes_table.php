@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('equipes', function (Blueprint $table) {
             $table->id();
-            $table->string('nom_equipe');
-            $table->string('tag');
-            $table->string('Pays');
-            $table->text('logo_url');
+            // Le nom equipe peut être nulable si le joueur n'appartient à aucune équipe
+            $table->string('nom_equipe')->nullable();
+            $table->string('tag')->nullable();
+            $table->string('Pays')->nullable();
+            $table->text('logo_url')->nullable();
             $table->timestamps();
         });
     }

@@ -11,15 +11,20 @@ class Joueur extends Model
 
     protected $table = 'joueurs';
 
-    protected $fillable = ['pseudo', 'id_jeu', 'id_equipe'];
+    protected $fillable = ['pseudo', 'photo', 'id_jeu', 'id_equipe'];
 
     public function jeu()
     {
-        return $this->belongsTo(Jeux::class, 'id_jeu');
+        return $this->belongsTo(Jeu::class, 'id_jeu');
     }
 
     public function equipe()
     {
-        return $this->belongsTo(Equipes::class, 'id_equipe');
+        return $this->belongsTo(Equipe::class, 'id_equipe');
+    }
+
+    public function infoJoueur()
+    {
+        return $this->hasOne(InfoJoueur::class, 'id_joueur');
     }
 }

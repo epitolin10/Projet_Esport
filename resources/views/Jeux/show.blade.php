@@ -1,19 +1,74 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liste des Tournois - eSport Game Hub</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-<body>
-    <!-- Barre de navigation -->
-    <nav>
-        <a href="/" class="logo">
-            <div class="logo-icon">🎮</div>
-            <span class="logo-text">eSport Game Hub</span>
-        </a>
-        <a href="/connexion" class="btn-connexion">Connexion</a>
-    </nav>
+@include('Jeux.BarreNavigation')
+@if(Auth::check() && Auth::user()->role === 'admin')
+    <!-- Section Admin DANS le container -->
+    <div class="container">
+        <div class="admin-section">
+            <div class="admin-header">
+                <h2 class="admin-title">
+                    ⚙️ Panneau d'Administration
+                </h2>
+                <p class="admin-subtitle">Ajouter un tournoi à la plateforme</p>
+            </div>
+
+            <div class="admin-form-container">
+                <!-- Messages de succès/erreur -->
+                @if(session('success'))
+                    <div class="alert-success">
+                        ✅ {{ session('success') }}
+                    </div>
+                @endif
+
+                @if($errors->any())
+                    <div class="alert-error">
+                        ⚠️ Erreurs détectées :
+                        <ul style="margin: 0.5rem 0 0 1.5rem;">
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <form action="{{ route('jeux.ajouter_tournoi', ['id' => $jeux->id]) }}" method="POST" enctype="multipart/form-data" class="admin-form">
+                    @csrf
+                    
+                    <div class="form-row">
+                        <div class="form-group-admin">
+                            <label for="nom_tournoi">Nom du tournoi</label>
+                            <input type="text" id="nom_tournoi" name="nom_tournoi" placeholder="Ex: World Championship" required>
+                        </div>
+
+                        <div class="form-group-admin">
+                            <label for="lieu">Lieu</label>
+                            <input type="text" id="lieu" name="lieu" placeholder="Ex: Paris" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group-admin">
+                            <label for="date_debut">Date de début</label>
+                            <input type="date" id="date_debut" name="date_debut" placeholder="Ex: 01/01/2024" required>
+                        </div>
+
+                        <div class="form-group-admin">
+                            <label for="date_fin">Date de fin</label>
+                            <input type="date" id="date_fin" name="date_fin" placeholder="Ex: 10/01/2024" required>
+                        </div>
+
+                        <div class="form-group-admin">
+                            <label for="description">Description</label>
+                            <input type="text" id="description" name="description" placeholder="Description du tournoi" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-ajouter">
+                        ✨ Ajouter le Tournoi
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+@endif
 
     <!-- Contenu principal -->
     <div class="container">
@@ -79,6 +134,4 @@
             </div>
         @endif
     </div>
-</body>
-</html>
-
+@include('Jeux.Footer')

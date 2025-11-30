@@ -14,10 +14,9 @@ return new class extends Migration
         Schema::create('joueurs', function (Blueprint $table) {
             $table->id();
             $table->string('pseudo');
-            
+            $table->string('photo')->nullable();
             $table->ForeignId('id_jeu')->constrained('jeux')->onDelete('cascade');
-            // On ignore la contrainte de la clé étrangère si le joueur n'appartient à aucune équipe
-            $table->ForeignId('id_equipe')->nullable()->constrained('equipes')->onDelete('set null');
+            $table->ForeignId('id_equipe')->nullable()->constrained('equipes')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -20,5 +20,22 @@ class JeuController extends Controller
         $tournois = $jeux->tournois;
         return view('jeux.show', compact('jeux', 'tournois'));
     }
+    public function AjouterJeu(Request $request)
+    {
+        $request->validate(['nom_jeux' => 'required', 'editeur' => 'required', 'categorie' => 'required', 'description' => 'required', 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp']);
+        
+        $imageName = $request->file('image')->getClientOriginalName();
+        $request->file('image')->move(public_path('images/Jeux'), $imageName);
+        
+        Jeu::create([
+            'nom_jeux' => $request->nom_jeux,
+            'editeur' => $request->editeur,
+            'categorie' => $request->categorie,
+            'description' => $request->description,
+            'image_url' => $imageName,
+        ]);
+        
+        return redirect()->route('jeux.index')->with('success', 'Jeu ajouté avec succès');
+    }
 
 }
