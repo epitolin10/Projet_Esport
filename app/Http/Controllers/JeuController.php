@@ -11,14 +11,14 @@ class JeuController extends Controller
     public function index()
     {
         $jeux = Jeu::All();
-        return view('jeux.index', compact('jeux'));
+        return view('Jeux.index', compact('jeux'));
     }
     // Affiche les tournois du jeu en question
     public function show($id)
     {
         $jeux = Jeu::with('tournois')->findOrFail($id);
         $tournois = $jeux->tournois;
-        return view('jeux.show', compact('Jeux', 'tournois'));
+        return view('Jeux.show', compact('Jeux', 'tournois'));
     }
     public function AjouterJeu(Request $request)
     {
