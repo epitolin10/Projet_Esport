@@ -28,6 +28,14 @@ WORKDIR /var/www/html
 # Copie des fichiers du projet
 COPY . /var/www/html
 
+
+RUN composer install --no-dev --optimize-autoloader
+
+RUN php artisan key:generate
+RUN php artisan config:cache
+RUN php artisan route:cache
+RUN php artisan view:cache
+
 # Installation des dépendances PHP
 RUN composer install --no-dev --optimize-autoloader
 
