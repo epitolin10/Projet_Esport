@@ -39,3 +39,12 @@ Route::post('/tournois/{id}/ajouter-commentaire', [App\Http\Controllers\Commenta
 Route::get('/joueur/info/{id}', [App\Http\Controllers\InfoJoueurController::class, 'MontrerInfoJoueur'])->name('joueur.informations');
 
 Route::post('/joueur/info/modifier/{id}', [App\Http\Controllers\InfoJoueurController::class, 'ModifierInfoJoueur'])->name('joueurs.modifier');
+
+Route::get('/force-migrate', function () {
+    try {
+        \Illuminate\Support\Facades\Artisan::call('migrate:fresh --seed --force');
+        return 'Succès ! Base de données réinitialisée et seeders exécutés.';
+    } catch (\Exception $e) {
+        return 'Erreur : ' . $e->getMessage();
+    }
+});
