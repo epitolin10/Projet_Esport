@@ -42,9 +42,10 @@ Route::post('/joueur/info/modifier/{id}', [App\Http\Controllers\InfoJoueurContro
 
 Route::get('/force-migrate', function () {
     try {
-        \Illuminate\Support\Facades\Artisan::call('migrate:fresh --seed --force');
-        return 'Succès ! Base de données réinitialisée et seeders exécutés.';
+        // On capture la sortie pour voir ce qui s'est passé
+        \Illuminate\Support\Facades\Artisan::call('migrate:fresh', ['--seed' => true, '--force' => true]);
+        return nl2br(\Illuminate\Support\Facades\Artisan::output());
     } catch (\Exception $e) {
-        return 'Erreur : ' . $e->getMessage();
+        return 'Erreur critique : ' . $e->getMessage();
     }
 });
