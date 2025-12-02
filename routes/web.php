@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/jeux', [App\Http\Controllers\JeuController::class, 'index'])->name('jeux.index');
 
@@ -41,33 +45,40 @@ Route::get('/joueur/info/{id}', [App\Http\Controllers\InfoJoueurController::clas
 Route::post('/joueur/info/modifier/{id}', [App\Http\Controllers\InfoJoueurController::class, 'ModifierInfoJoueur'])->name('joueurs.modifier');
 
 Route::get('/force-migrate', function () {
+    $output = "<h1>Réparation Forcée de la Base de Données</h1>";
+    
     try {
-        $output = "Début du nettoyage...\n";
+        // 1. Suppression manuelle de la table équipes
+        Schema::dropIfExists('equipes');
+        $output .= "✅ Table 'equipes' supprimée.<br>";
 
-        // 1. Suppression brutale de la table 'equipes' si elle existe
-        // Cela force Laravel à la recréer proprement ensuite
-        \Illuminate\Support\Facades\Schema::dropIfExists('equipes');
-        $output .= "Table 'equipes' supprimée (DROP).\n";
+        // 2. Création MANUELLE de la table (On contourne le fichier de migration)
+        Schema::create('equipes', function (Blueprint $table) {
+            $table->id();
+            $table->string('nom_equipe');
+            $table->string('tag')->nullable();
+            $table->string('pays')->nullable(); // ON FORCE LA COLONNE ICI
+            $table->string('logo_url')->nullable();
+            $table->timestamps();
+        });
+        $output .= "✅ Table 'equipes' recréée manuellement (avec colonne 'pays').<br>";
 
-        // 2. Suppression de la table 'migrations' pour forcer Laravel à tout rejouer
-        // Attention : cela efface l'historique des migrations, tout sera rejoué
-        \Illuminate\Support\Facades\Schema::dropIfExists('migrations');
-        $output .= "Table 'migrations' supprimée (DROP).\n";
+        // 3. On lance les migrations pour le reste (users, jeux, etc.)
+        // On utilise --seed pour remplir après
+        Artisan::call('migrate', ['--force' => true]);
+        $output .= "✅ Autres migrations exécutées.<br>";
 
-        // 3. On lance migrate:fresh --seed --force
-        // Le fresh va de toute façon tout dropper, mais nos drops manuels
-        // garantissent qu'il n'y a pas de conflit bizarre.
-        \Illuminate\Support\Facades\Artisan::call('migrate:fresh', [
-            '--seed' => true,
-            '--force' => true
-        ]);
+        // 4. Lancement des Seeders
+        Artisan::call('db:seed', ['--force' => true]);
+        $output .= "✅ Seeders exécutés avec succès !<br>";
         
-        $output .= "Migration et Seed terminés.\n";
-        $output .= "SORTIE ARTISAN :\n" . \Illuminate\Support\Facades\Artisan::output();
-
-        return nl2br($output);
+        // 5. Vérification finale
+        $columns = Schema::getColumnListing('equipes');
+        $output .= "<br><strong>Colonnes actuelles dans la table 'equipes' :</strong> " . implode(', ', $columns);
 
     } catch (\Exception $e) {
-        return 'ERREUR CRITIQUE : ' . $e->getMessage() . "<br>" . $e->getTraceAsString();
+        $output .= "❌ ERREUR : " . $e->getMessage();
     }
+
+    return $output;
 });
