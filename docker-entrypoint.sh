@@ -34,28 +34,24 @@ php artisan view:cache || log "view:cache failed"
 
 # Run migrations
 log "Running migrations..."
-if [ "${FORCE_MIGRATE:-false}" = "true" ]; then
-  php artisan migrate:fresh --seed --force
-else
-  php artisan migrate --force
-fi
+php artisan migrate --force
 
-# Run seeders once: use a marker file so we don't reseed on every restart
-SEED_MARKER="storage/.seeded_by_render"
-if [ ! -f "$SEED_MARKER" ]; then
-  log "Running database seeders..."
-  if php artisan db:seed --force; then
-    log "Seeders completed. Creating marker $SEED_MARKER"
-    touch "$SEED_MARKER"
-    chown www-data:www-data "$SEED_MARKER" || true
-  else
-    log "Seeders failed. See output above."
-    exit 1
-  fi
-else
-  log "Seed marker present, skipping seeders."
-fi
+# --- COMMENTEZ TOUT CE BLOC CI-DESSOUS ---
+# SEED_MARKER="storage/.seeded_by_render"
+# if [ ! -f "$SEED_MARKER" ]; then
+#   log "Running seeders..."
+#   if php artisan db:seed --force; then
+#     touch "$SEED_MARKER"
+#     chown www-data:www-data "$SEED_MARKER" || true
+#     log "Seeders finished."
+#   else
+#     log "Seeders failed."
+#     # exit 1  <-- IMPORTANT : NE PAS QUITTER EN ERREUR
+#   fi
+# else
+#   log "Seed marker present; skipping seeders."
+# fi
+# -----------------------------------------
 
-# Start Apache
 log "Starting Apache..."
 exec apache2-foreground
