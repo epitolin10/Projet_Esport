@@ -42,19 +42,32 @@ Route::post('/joueur/info/modifier/{id}', [App\Http\Controllers\InfoJoueurContro
 
 Route::get('/force-migrate', function () {
     try {
-        // S'assurer que l'autoload est à jour (utile si de nouveaux seeders/migrations ont été ajoutés)
-        exec('composer dump-autoload 2>&1', $composerOutput, $composerStatus);
+        $output = "Début du nettoyage...\n";
 
-        // Exécuter migrate:fresh --seed --force et capturer la sortie
+        // 1. Suppression brutale de la table 'equipes' si elle existe
+        // Cela force Laravel à la recréer proprement ensuite
+        \Illuminate\Support\Facades\Schema::dropIfExists('equipes');
+        $output .= "Table 'equipes' supprimée (DROP).\n";
+
+        // 2. Suppression de la table 'migrations' pour forcer Laravel à tout rejouer
+        // Attention : cela efface l'historique des migrations, tout sera rejoué
+        \Illuminate\Support\Facades\Schema::dropIfExists('migrations');
+        $output .= "Table 'migrations' supprimée (DROP).\n";
+
+        // 3. On lance migrate:fresh --seed --force
+        // Le fresh va de toute façon tout dropper, mais nos drops manuels
+        // garantissent qu'il n'y a pas de conflit bizarre.
         \Illuminate\Support\Facades\Artisan::call('migrate:fresh', [
             '--seed' => true,
-            '--force' => true,
+            '--force' => true
         ]);
+        
+        $output .= "Migration et Seed terminés.\n";
+        $output .= "SORTIE ARTISAN :\n" . \Illuminate\Support\Facades\Artisan::output();
 
-        $output = \Illuminate\Support\Facades\Artisan::output();
+        return nl2br($output);
 
-        return nl2br("composer dump-autoload status: {$composerStatus}\n\n" . implode("\n", $composerOutput) . "\n\nARTISAN OUTPUT:\n" . $output);
     } catch (\Exception $e) {
-        return 'Erreur critique : ' . $e->getMessage() . "\n" . $e->getTraceAsString();
+        return 'ERREUR CRITIQUE : ' . $e->getMessage() . "<br>" . $e->getTraceAsString();
     }
 });
