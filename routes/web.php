@@ -42,6 +42,8 @@ Route::post('/joueur/info/modifier/{id}', [App\Http\Controllers\InfoJoueurContro
 
 Route::get('/force-migrate', function () {
     try {
+        exec('composer dump-autoload');
+        \Illuminate\Support\Facades\Artisan::call(...);
         // On capture la sortie pour voir ce qui s'est passé
         \Illuminate\Support\Facades\Artisan::call('migrate:fresh', ['--seed' => true, '--force' => true]);
         return nl2br(\Illuminate\Support\Facades\Artisan::output());
