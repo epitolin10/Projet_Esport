@@ -42,12 +42,19 @@ Route::post('/joueur/info/modifier/{id}', [App\Http\Controllers\InfoJoueurContro
 
 Route::get('/force-migrate', function () {
     try {
-        exec('composer dump-autoload');
-        \Illuminate\Support\Facades\Artisan::call(...);
-        // On capture la sortie pour voir ce qui s'est passé
-        \Illuminate\Support\Facades\Artisan::call('migrate:fresh', ['--seed' => true, '--force' => true]);
-        return nl2br(\Illuminate\Support\Facades\Artisan::output());
+        // S'assurer que l'autoload est à jour (utile si de nouveaux seeders/migrations ont été ajoutés)
+        exec('composer dump-autoload 2>&1', $composerOutput, $composerStatus);
+
+        // Exécuter migrate:fresh --seed --force et capturer la sortie
+        \Illuminate\Support\Facades\Artisan::call('migrate:fresh', [
+            '--seed' => true,
+            '--force' => true,
+        ]);
+
+        $output = \Illuminate\Support\Facades\Artisan::output();
+
+        return nl2br("composer dump-autoload status: {$composerStatus}\n\n" . implode("\n", $composerOutput) . "\n\nARTISAN OUTPUT:\n" . $output);
     } catch (\Exception $e) {
-        return 'Erreur critique : ' . $e->getMessage();
+        return 'Erreur critique : ' . $e->getMessage() . "\n" . $e->getTraceAsString();
     }
 });
