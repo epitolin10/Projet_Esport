@@ -44,21 +44,47 @@ Route::get('/joueur/info/{id}', [App\Http\Controllers\InfoJoueurController::clas
 
 Route::post('/joueur/info/modifier/{id}', [App\Http\Controllers\InfoJoueurController::class, 'ModifierInfoJoueur'])->name('joueurs.modifier');
 
-Route::get('/force-migrate', function () {
-    $output = "<h1>Nettoyage complet et Reset de la Base de Données</h1>";
+Route::get('/force-clean', function () {
+    $output = "<h1>Nettoyage Manuel Radical</h1>";
     
     try {
-        // 1. On vide tout (DROP ALL TABLES) et on relance les migrations
-        // C'est plus radical et plus propre que refresh
+        // Désactiver les contraintes de clés étrangères pour éviter les erreurs de suppression
+        \Illuminate\Support\Facades\Schema::disableForeignKeyConstraints();
+
+        // Liste de TOUTES vos tables à supprimer manuellement
+        // Ajoutez ici toutes les tables de votre projet
+        $tables = [
+            'participations_equipe', // Table pivot souvent problématique
+            'equipes_tournois',      // Autre nom possible de pivot
+            'tournois',
+            'joueurs',
+            'info_joueur',
+            'equipes',
+            'jeux',
+            'users',
+            'password_reset_tokens',
+            'sessions',
+            'migrations',            // On supprime même l'historique des migrations
+            'cache',
+            'jobs',
+            'failed_jobs'
+        ];
+
+        foreach ($tables as $table) {
+            \Illuminate\Support\Facades\Schema::dropIfExists($table);
+            $output .= "🗑️ Table '$table' supprimée.<br>";
+        }
+
+        \Illuminate\Support\Facades\Schema::enableForeignKeyConstraints();
+
+        $output .= "<hr>🔄 Lancement de migrate:fresh --seed...<br>";
+
         \Illuminate\Support\Facades\Artisan::call('migrate:fresh', [
-            '--seed' => true,   // Relance les seeders immédiatement après
-            '--force' => true   // Obligatoire en prod
+            '--seed' => true,
+            '--force' => true
         ]);
-        
-        $output .= "✅ Base de données entièrement réinitialisée (migrate:fresh).<br>";
-        $output .= "✅ Seeders exécutés (sans doublons).<br>";
-        
-        // Affiche la sortie console pour confirmation
+
+        $output .= "✅ <strong>TERMINE !</strong> Base neuve et propre.<br>";
         $output .= "<pre>" . \Illuminate\Support\Facades\Artisan::output() . "</pre>";
 
     } catch (\Exception $e) {
