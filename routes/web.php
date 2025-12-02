@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Route;
+//use Illuminate\Support\Facades\Route;
 
 Route::get('/jeux', [App\Http\Controllers\JeuController::class, 'index'])->name('jeux.index');
 
