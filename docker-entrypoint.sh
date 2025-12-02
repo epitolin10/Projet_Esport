@@ -34,11 +34,10 @@ php artisan view:cache || log "view:cache failed"
 
 # Run migrations
 log "Running migrations..."
-if php artisan migrate --force; then
-  log "Migrations completed."
+if [ "${FORCE_MIGRATE:-false}" = "true" ]; then
+  php artisan migrate:fresh --seed --force
 else
-  log "Migrations failed. See output above."
-  exit 1
+  php artisan migrate --force
 fi
 
 # Run seeders once: use a marker file so we don't reseed on every restart
