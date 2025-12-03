@@ -17,7 +17,7 @@ class JeuController extends Controller
     public function show($id)
     {
         $jeux = Jeu::with('tournois')->findOrFail($id);
-        $tournois = $jeux->tournois;
+        $tournois = $Jeux->tournois;
         return view('Jeux.show', compact('Jeux', 'tournois'));
     }
     public function AjouterJeu(Request $request)
