@@ -10,7 +10,7 @@ class JeuController extends Controller
 {
     public function index()
     {
-        $jeux = Jeu::All();
+        $Jeux = Jeu::All();
         return view('Jeux.index', compact('jeux'));
     }
     // Affiche les tournois du jeu en question
