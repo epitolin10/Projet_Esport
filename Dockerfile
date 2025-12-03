@@ -41,9 +41,20 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 RUN a2enmod rewrite
 
 # Configuration du DocumentRoot Apache vers le dossier public
+# Configuration du DocumentRoot Apache vers le dossier public
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/000-default.conf
-RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
+
+# Modification cruciale : On remplace la config par défaut pour autoriser le .htaccess
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/000-default.conf \
+    && sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
+
+# Ajout explicite des permissions Directory pour garantir que AllowOverride All est actif
+RUN echo "<Directory /var/www/html/public>" >> /etc/apache2/apache2.conf \
+    && echo "    Options Indexes FollowSymLinks" >> /etc/apache2/apache2.conf \
+    && echo "    AllowOverride All" >> /etc/apache2/apache2.conf \
+    && echo "    Require all granted" >> /etc/apache2/apache2.conf \
+    && echo "</Directory>" >> /etc/apache2/apache2.conf
+
 
 # Copie et permissions du script d'entrée
 COPY docker-entrypoint.sh /usr/local/bin/
