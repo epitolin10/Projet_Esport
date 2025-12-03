@@ -11,7 +11,7 @@ class JeuController extends Controller
     public function index()
     {
         $Jeux = Jeu::All();
-        return view('Jeux.index', compact('jeux'));
+        return view('Jeux.index', compact('Jeux'));
     }
     // Affiche les tournois du jeu en question
     public function show($id)
