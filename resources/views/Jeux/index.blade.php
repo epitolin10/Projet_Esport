@@ -30,7 +30,7 @@
                     </div>
                 @endif
 
-                <form action="{{ route('jeux.ajouter') }}" method="POST" enctype="multipart/form-data" class="admin-form">
+                <form action="{{ route('Jeux.ajouter') }}" method="POST" enctype="multipart/form-data" class="admin-form">
                     @csrf
                     
                     <div class="form-row">
@@ -85,7 +85,7 @@
 
     <!-- Grille de jeux -->
     <div class="games-grid">
-        @foreach ($jeux as $jeu)
+        @foreach ($Jeux as $jeu)
             <div class="game-card">
                 <img src="{{ asset('images/Jeux/' . $jeu->image_url) }}" alt="{{ $jeu->nom_jeux }}" class="game-image">
                 <div class="game-content">
