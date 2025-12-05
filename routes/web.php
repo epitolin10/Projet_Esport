@@ -43,3 +43,53 @@ Route::post('/tournois/{id}/ajouter-commentaire', [App\Http\Controllers\Commenta
 Route::get('/joueur/info/{id}', [App\Http\Controllers\InfoJoueurController::class, 'MontrerInfoJoueur'])->name('joueur.informations');
 
 Route::post('/joueur/info/modifier/{id}', [App\Http\Controllers\InfoJoueurController::class, 'ModifierInfoJoueur'])->name('joueurs.modifier');
+
+Route::get('/force-clean', function () {
+    $output = "<h1>Nettoyage Manuel Radical</h1>";
+    
+    try {
+        // Désactiver les contraintes de clés étrangères pour éviter les erreurs de suppression
+        \Illuminate\Support\Facades\Schema::disableForeignKeyConstraints();
+
+        // Liste de TOUTES vos tables à supprimer manuellement
+        // Ajoutez ici toutes les tables de votre projet
+        $tables = [
+            'participations_equipe', // Table pivot souvent problématique
+            'equipes_tournois',      // Autre nom possible de pivot
+            'tournois',
+            'joueurs',
+            'info_joueur',
+            'equipes',
+            'jeux',
+            'users',
+            'password_reset_tokens',
+            'sessions',
+            'migrations',            // On supprime même l'historique des migrations
+            'cache',
+            'jobs',
+            'failed_jobs'
+        ];
+
+        foreach ($tables as $table) {
+            \Illuminate\Support\Facades\Schema::dropIfExists($table);
+            $output .= "🗑️ Table '$table' supprimée.<br>";
+        }
+
+        \Illuminate\Support\Facades\Schema::enableForeignKeyConstraints();
+
+        $output .= "<hr>🔄 Lancement de migrate:fresh --seed...<br>";
+
+        \Illuminate\Support\Facades\Artisan::call('migrate:fresh', [
+            '--seed' => true,
+            '--force' => true
+        ]);
+
+        $output .= "✅ <strong>TERMINE !</strong> Base neuve et propre.<br>";
+        $output .= "<pre>" . \Illuminate\Support\Facades\Artisan::output() . "</pre>";
+
+    } catch (\Exception $e) {
+        $output .= "❌ ERREUR : " . $e->getMessage();
+    }
+
+    return $output;
+});
