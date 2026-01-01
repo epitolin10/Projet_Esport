@@ -33,8 +33,8 @@ php artisan view:cache
 
 # --- ZONE DE RESET ---
 # Au lieu de juste migrer, on fait un FRESH complet pour supprimer toutes les vieilles données
-log "Recherche de données à ajouter"
-php artisan migrate --force
+log "Ajout des Seeders dans la base de données"
+php artisan migrate --force --seed
 # ---------------------
 
 log "Starting Apache on port ${PORT}..."
